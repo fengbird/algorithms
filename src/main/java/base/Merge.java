@@ -7,6 +7,7 @@ import java.util.Arrays;
 /**
  * @author ZhaoTengchao
  * @description 归并排序-递归的方式-自顶向下归并 主要思路：每次将数组进行左右划分，然后进行数据的归并，之后将此过程进行递归调用
+ * 归并(递归)排序：先拆分(递归)后合并，拆分时按照索引中值拆分，合并时额外引入缓存数组在元素复制后做合并操作
  * @date 2021/6/30 上午11:17
  **/
 public class Merge {

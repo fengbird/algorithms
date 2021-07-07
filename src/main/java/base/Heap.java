@@ -5,6 +5,9 @@ import java.util.Arrays;
 /**
  * @author ZhaoTengchao
  * @description 堆排序
+ * 主思路：先利用数组原地进行堆的构建，再根据堆的特性对数组内的数据进行根值后移、堆结构有序化操作
+ * 核心：sink方法，即当前元素与它的两个子元素之间的比较及交换
+ * 重点：堆结构映射到数组上的存储方式
  * @date 2021/7/6 下午2:50
  **/
 public class Heap {
