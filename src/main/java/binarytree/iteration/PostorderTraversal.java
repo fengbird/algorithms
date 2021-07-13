@@ -1,12 +1,14 @@
-package binarytree;
+package binarytree.iteration;
+
+import binarytree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 /**
+ * 后序遍历-迭代解法,遍历流程：先遍历左子节点，再遍历右子节点，两边的都遍历完后再获取当前节点的值
  * @author ZhaoTengchao
- * @description 后序遍历-迭代解法,遍历流程：先遍历左子节点，再遍历右子节点，两边的都遍历完后再获取当前节点的值
  * @date 2021/7/9 下午4:42
  **/
 public class PostorderTraversal {
@@ -27,36 +29,36 @@ public class PostorderTraversal {
         return list;
     }
 
-    public void postorder(List<Integer> list, TreeNode root) {
+    public void postorder(List<Integer> list, TreeNode node) {
         // 临界值处理
-        if (root == null) {
+        if (node == null) {
             return;
         }
         // 创建栈
         Stack<TreeNode> stack = new Stack<>();
         TreeNode prev = null;
         // 遍历条件：被遍历到的节点不为null或当前栈内不为空
-        while (root != null || !stack.empty()) {
+        while (node != null || !stack.empty()) {
             // 如果当前节点不为null，则循环遍历至当前节点下最后一个左子节点
-            while (root != null) {
-                stack.push(root);
-                root = root.left;
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
             }
             // 取当前的栈顶元素
-            root = stack.pop();
+            node = stack.pop();
             // 如果当前节点的右子节点为null或当前节点的右子节点等于上次循环遍历到的元素
-            if (root.right == null || root.right == prev) {
+            if (node.right == null || node.right == prev) {
                 // 将当前节点值放入集合
-                list.add(root.val);
+                list.add(node.val);
                 // 将当前节点赋值给prev元素
-                prev = root;
+                prev = node;
                 // 将root值置为null
-                root = null;
+                node = null;
             } else {
                 // 否则，重新将当前节点对象放回栈
-                stack.push(root);
+                stack.push(node);
                 // 此时当前节点的左子节点已没有数据，故将节点设置为右子节点进行新的遍历(发生在弹出之后)
-                root = root.right;
+                node = node.right;
             }
         }
     }

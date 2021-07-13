@@ -1,12 +1,13 @@
-package binarytree;
+package binarytree.recursion;
+
+import binarytree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
+ * 中序遍历-递归实现
  * @author ZhaoTengchao
- * @description 中序遍历-迭代实现
  * @date 2021/7/9 下午3:14
  **/
 public class InorderTraversal {
@@ -31,24 +32,11 @@ public class InorderTraversal {
         if (node == null) {
             return;
         }
-        // 创建栈
-        Stack<TreeNode> stack = new Stack<>();
-        // 根据栈是否为空以及节点是否不为null做循环压栈
-        while (node != null || !stack.isEmpty()) {
-            // 先对左子节点做循环压栈
-            while (node != null) {
-                stack.push(node);
-                node = node.left;
-            }
-            // 若栈不为空，
-            if (!stack.isEmpty()) {
-                // 弹栈，
-                node = stack.pop();
-                // 将值入集合，
-                list.add(node.val);
-                // 将右侧节点值赋予node变量
-                node = node.right;
-            }
-        }
+        // 先递归左子节点
+        inorder(list, node.left);
+        // 将当前节点值加入集合
+        list.add(node.val);
+        // 最后递归右子节点
+        inorder(list, node.right);
     }
 }
